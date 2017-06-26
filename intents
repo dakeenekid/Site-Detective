@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {
+      "intent": "WhatIsMyStatusIntent",
+      "slots": [
+        {
+          "website": "site",
+          "type": "AMAZON.LocalBusiness"
+        },
+      ]
+    }
+  ]
+}
