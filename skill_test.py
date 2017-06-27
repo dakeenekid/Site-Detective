@@ -1,8 +1,6 @@
 from flask import Flask
-from flask_ask import Ask, statement, question, session
+from flask_ask import Ask, statement, question
 import urllib
-import json
-import requests
 
 app = Flask(__name__)
 ask = Ask(app, "/")
