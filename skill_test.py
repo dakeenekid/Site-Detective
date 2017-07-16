@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_ask import Ask, statement, question
-import urllib
-
+from urllib.request import urlopen
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -20,7 +19,7 @@ def what_is_my_status(site):
         return statement(msg)
 
 
-    page = urllib.urlopen("http://www."+site.lower()+".com").getcode()
+    page = urlopen("http://www."+site.lower()+".com").getcode()
 
 
     if page == 200:
@@ -29,7 +28,7 @@ def what_is_my_status(site):
 
 
     elif page == 404:
-        print page
+        print(page)
         msg = "The page {} is down!".format(site)
         return statement(msg)
 
@@ -38,21 +37,20 @@ def what_is_my_status(site):
         return statement(msg)
 
     elif page == 503:
-        print page
+        print(page)
         msg = "The page {} is down!".format(site)
         return statement(msg).simple_card("Okay, {}".format(site), msg)
 
 
     elif page == 429:
-        print page
+        print(page)
         msg = "The page {} is not avaliable, but could be up!".format(site)
         return statement(msg).simple_card("Okay, {}".format(site), msg)
 
     else:
-        print page
+        print(page)
         msg = "The page {} is down!".format(site)
         return statement(msg).simple_card("Okay, {}".format(site), msg)
 
 if __name__ == '__main__':
     app.run(debug=True)
-
