@@ -1,28 +1,28 @@
 import urllib
 
 def get_status():
-    site = raw_input("Which website do you want to check the status of?")
+    site = input("Which website do you want to check the status of?")
     print("You are finding the status of "+site+".")
 
     page = urllib.urlopen("http://www."+site+".com").getcode()
 
     if page == 200:
-        print page
+        print(page)
         return 'The page is up!'
 
 
     elif page == 404:
-        print page
+        print(page)
         return 'Page is down!'
 
     elif page == 503:
-        print page
+        print(page)
         return 'Page is down!'
     elif page == 429:
-        print 'Please stop spamming this server with requests'
+        print('Please stop spamming this server with requests')
 
     else:
-        print page
+        print(page)
         return 'Page is down!'
 
 
