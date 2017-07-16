@@ -1,10 +1,10 @@
-import urllib
+from urllib.request import urlopen
 
 def get_status():
     site = input("Which website do you want to check the status of?")
     print("You are finding the status of "+site+".")
 
-    page = urllib.urlopen("http://www."+site+".com").getcode()
+    page = urlopen("http://www."+site+".com").getcode()
 
     if page == 200:
         print(page)
