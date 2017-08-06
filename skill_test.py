@@ -31,7 +31,7 @@ def yes_skill():
 
 @ask.intent("NoIntent")
 def no_skill():
-    msg = "Oh, okay. I thought you needed a webpage checked. If you need help, please say, alexa, ask site detective to help me."
+    msg = "Okay. If you ever need a webpage checked, I'll be here!"
     return statement(msg)
 
 
