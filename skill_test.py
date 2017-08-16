@@ -44,6 +44,12 @@ def what_is_my_status(site):
 
         if "dot" in site:
             site = site.replace("dot", ".")
+        #Special exception for amazon.com, which returns error code 503, however developer.amazon.com returns 200.
+        if "amazon" in site:
+            site = site.replace("amazon", "developer.amazon")
+
+        if "developer.developer.amazon" in site:
+            site = site.replace("developer.developer.amazon", "developer.amazon")
 
         if not site:
             msg = "I'm sorry, I must not have heard you correctly. Can you repeat that?"
@@ -54,31 +60,32 @@ def what_is_my_status(site):
             add = "http://www.xbox.com/en-US/"
         elif "playstation" in add:
             add = "https://www.playstation.com/en-us/"
+
         page = add.getcode()
 
         if page == 200:
-            msg = "The page {} is up! Would you like to ask again?".format(site)
+            msg = "The page {} is up! Would you like to ask again?".format(site.replace("developer.amazon","amazon"))
             return question(msg).simple_card("Looking at, {}".format(site), msg)
 
         elif page == 404:
-            msg = "The page {} is down, or does not exist! Would you like to ask again?".format(site)
+            msg = "The page {} is down, or does not exist! Would you like to ask again?".format(site.replace("developer.amazon","amazon"))
             return question(msg)
 
         elif page == 403:
-            msg = "The page {} is forbidden, and returned code 403. Would you like to ask again?".format(site)
+            msg = "The page {} is forbidden, and returned code 403. Would you like to ask again?".format(site.replace("developer.amazon","amazon"))
             return question(msg)
 
         elif page == 503:
-            msg = "The page {} is down! Would you like to ask again?".format(site)
+            msg = "The page {} is down! Would you like to ask again?".format(site.replace("developer.amazon","amazon"))
             return question(msg).simple_card("Looking at, {}".format(site), msg)
 
 
         elif page == 429:
-            msg = "The page {} is not avaliable, but could be up! Returned code 429 from server. Would you like to ask again?".format(site)
+            msg = "The page {} is not avaliable, but could be up! Returned code 429 from server. Would you like to ask again?".format(site.replace("developer.amazon","amazon"))
             return question(msg).simple_card("Looking at, {}".format(site), msg)
 
         else:
-            msg = "The page {} is down! Would you like to ask again?".format(site)
+            msg = "The page {} is down! Would you like to ask again?".format(site.replace("developer.amazon","amazon"))
             return question(msg).simple_card("Looking at, {}".format(site), msg)
     except:
         msg = "Sorry, I must have misunderstood you. Can you repeat that?"
