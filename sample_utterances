@@ -1,7 +1,0 @@
-WhatIsMyStatusIntent Is {site} down
-WhatIsMyStatusIntent What is the status of {site}
-WhatIsMyStatusIntent Why can't I connect to {site}
-WhatIsMyStatusIntent {site}
-YesIntent yes
-HelpIntent help me
-NoIntent no
